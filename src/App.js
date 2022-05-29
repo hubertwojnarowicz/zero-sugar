@@ -1,14 +1,34 @@
 import React from 'react';
 import TokenContext from './context/token';
-import Header from './components/Header/Header';
+import GlobalStyles from './GlobalStyles';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import * as ROUTES from './routes/routes';
+import ThemeContext from './context/theme';
+import useTheme from './hooks/use-theme';
+import Home from './pages/Home';
+import Photos from './pages/Photos';
+import Theme from './Theme';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 function App() {
   const token = 'v72vhkgjeVoA_tMj3ZLYtDl3WnxYILagMUKOgHtRFLk';
-
+  const { theme, setColorMode } = useTheme();
   return (
-    <TokenContext.Provider value={token}>
-      <Header />
-    </TokenContext.Provider>
+    <ThemeContext.Provider value={{ theme, setColorMode }}>
+      <TokenContext.Provider value={token}>
+        <Theme>
+          <SkeletonTheme baseColor="#A3B8C2" highlightColor="#F0F3F5">
+            <GlobalStyles />
+            <Router>
+              <Routes>
+                <Route path={ROUTES.HOME} element={<Home />} />
+                <Route path={ROUTES.PHOTOS} element={<Photos />} />
+              </Routes>
+            </Router>
+          </SkeletonTheme>
+        </Theme>
+      </TokenContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
@@ -19,3 +39,5 @@ export default App;
 // when you successfully logged in you will be redirect to localhost:3000 with code param in the url.
 // You cant use useEffect everytime because the code param is valid for 1minute.
 // So my idea is to use useEffect one time, copy the token and pass it as a provider.
+
+// image with 2 button (add to collection, like)
