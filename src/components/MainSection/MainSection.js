@@ -4,10 +4,12 @@ import styledComponents from 'styled-components';
 import FirstRow from './FirstRow';
 import SecondRow from './SecondRow';
 import ThirdRow from './ThirdRow';
+import 'react-loading-skeleton/dist/skeleton.css';
+import GridSkeleton from './GridSkeleton';
 
 export default function MainSection({ refProp }) {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -22,10 +24,13 @@ export default function MainSection({ refProp }) {
         setLoading(false);
       });
   }, []);
-
+  // todo: add skeleton loading.
   return (
     <MainSectionWrapper ref={refProp}>
       <GridWrapper>
+        {loading && <GridSkeleton images={10} />}
+        {loading && <GridSkeleton images={10} />}
+        {loading && <GridSkeleton images={10} />}
         <FirstRow data={data} />
         <SecondRow data={data} />
         <ThirdRow data={data} />
@@ -42,11 +47,8 @@ const MainSectionWrapper = styledComponents.main`
 const GridWrapper = styledComponents.div`
     display: grid;
     margin: 32px;
-    place-items: center;
     grid-template-columns: repeat(3, minmax(150px, 500px));
     gap: 16px;
-    justify-items: center;
-
 `;
 
 // const PhotoWrapper = styledComponents.figure`

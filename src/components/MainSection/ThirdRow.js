@@ -3,6 +3,7 @@ import styledComponents from 'styled-components';
 import { Link } from 'react-router-dom';
 import PhotoButtons from './PhotoButtons';
 import PhotographerInfo from './PhotographerInfo';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function ThirdRow({ data }) {
   const [isVisible, setIsVisible] = useState(-1);
@@ -20,7 +21,6 @@ export default function ThirdRow({ data }) {
     <GridThirdRow>
       {filteredData.map((photo, i) => {
         const { user } = photo;
-
         return (
           <PhotoLink
             key={photo.id}
@@ -30,7 +30,7 @@ export default function ThirdRow({ data }) {
           >
             <PhotoWrapper>
               <Photo src={photo.urls.raw} />
-              <PhotoButtons i={i} isVisible={isVisible} />
+              <PhotoButtons i={i} isVisible={isVisible} id={photo.id} />
               <PhotographerInfo user={user} i={i} isVisible={isVisible} />
             </PhotoWrapper>
           </PhotoLink>

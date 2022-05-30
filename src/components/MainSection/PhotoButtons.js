@@ -1,9 +1,26 @@
+import { useContext } from 'react';
 import styledComponents from 'styled-components';
 import { Heart, Plus } from 'react-feather';
-export default function PhotoButtons({ i, isVisible }) {
+import axios from 'axios';
+import TokenContext from '../../context/token';
+
+export default function PhotoButtons({ i, isVisible, id }) {
+  console.log(id);
+  const token = useContext(TokenContext);
+  console.log(token);
+  // todo: send post request with liked photo
+  // todo: send post request with created collection
+  const likePhoto = () => {
+    axios(`https://api.unsplash.com/photos/${id}/like`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  };
   return (
     <PhotoButtonWrapper style={{ display: isVisible === i ? 'flex' : 'none' }}>
-      <LikePhotoButton>
+      <LikePhotoButton onClick={likePhoto}>
         <HeartIcon size="18" />
       </LikePhotoButton>
       <AddToCollectionButton>

@@ -29,7 +29,7 @@ export default function SecondRow({ data }) {
           >
             <PhotoWrapper>
               <Photo src={photo.urls.raw} />
-              <PhotoButtons isVisible={isVisible} i={i} />
+              <PhotoButtons isVisible={isVisible} i={i} id={photo.id} />
               <PhotographerInfo user={user} isVisible={isVisible} i={i} />
             </PhotoWrapper>
           </PhotoLink>

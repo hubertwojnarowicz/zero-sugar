@@ -43,7 +43,7 @@ export default function AboutSection({ refScroll }) {
           {loading && <ImagesSkeleton images={4} />}
           {data.map((img) => {
             return (
-              <PhotoWrapper>
+              <PhotoWrapper key={img.id}>
                 <Photo src={img.urls.regular} />
               </PhotoWrapper>
             );

@@ -45,7 +45,7 @@ export default function FirstRow({ data }) {
           >
             <PhotoWrapper>
               <Photo src={photo.urls.raw} />
-              <PhotoButtons i={i} isVisible={isVisible} />
+              <PhotoButtons i={i} isVisible={isVisible} id={photo.id} />
               <PhotographerInfo user={user} isVisible={isVisible} i={i} />
             </PhotoWrapper>
           </PhotoLink>
@@ -55,16 +55,16 @@ export default function FirstRow({ data }) {
   );
 }
 
-const PhotoLink = styledComponents(Link)`
-  position: relative;
-`;
-
 const GridFirstRow = styledComponents.div`
   display: grid;
   grid-template-columns: minmax(0,1fr);
   gap: 16px;
   align-self: flex-start;
 
+`;
+
+const PhotoLink = styledComponents(Link)`
+  position: relative;
 `;
 
 const PhotoWrapper = styledComponents.figure`
