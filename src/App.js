@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TokenContext from './context/token';
 import GlobalStyles from './GlobalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -9,9 +9,10 @@ import Home from './pages/Home';
 import Photos from './pages/Photos';
 import Theme from './Theme';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import axios from 'axios';
 
 function App() {
-  const token = 'v72vhkgjeVoA_tMj3ZLYtDl3WnxYILagMUKOgHtRFLk';
+  const token = 'yvvzKFOYjSxZZ62D8uqs7P_skXPfre937dzUxBQINj0';
   const { theme, setColorMode } = useTheme();
   return (
     <ThemeContext.Provider value={{ theme, setColorMode }}>
