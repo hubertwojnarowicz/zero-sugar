@@ -12,7 +12,7 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import PhotoDialog from './components/MainSection/PhotoDialog';
 
 function App() {
-  const token = 'yvvzKFOYjSxZZ62D8uqs7P_skXPfre937dzUxBQINj0';
+  const token = '';
   const { theme, setColorMode } = useTheme();
   return (
     <ThemeContext.Provider value={{ theme, setColorMode }}>
