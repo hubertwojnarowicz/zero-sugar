@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import styledComponents from 'styled-components';
 import PhotoButtons from './PhotoButtons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import PhotographerInfo from './PhotographerInfo';
+import PhotoDialog from './PhotoDialog';
+import * as ROUTES from '../../routes/routes';
+
 export default function FirstRow({ data }) {
   const [isVisible, setIsVisible] = useState(-1);
+  const [isOpen, setIsOpen] = useState(false);
   const filteredData = data.filter((photo, index) => index < 10);
 
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  console.log(pathname);
   // const showIcons = (e) => {
   //   // const nextElement = e.target.nextElementSibling;
   //   // const userInfo = nextElement.nextElementSibling;
@@ -24,6 +31,14 @@ export default function FirstRow({ data }) {
   //   }
   // };
 
+  const handleDismiss = () => {
+    navigate(ROUTES.HOME);
+    setIsOpen(false);
+    if (pathname === '/') {
+      console.log('hello');
+    }
+  };
+
   const showIcons = (i) => {
     setIsVisible(i);
   };
@@ -39,9 +54,10 @@ export default function FirstRow({ data }) {
         return (
           <PhotoLink
             key={photo.id}
-            to="/"
+            to={`/photos/${photo.id}`}
             onMouseEnter={() => showIcons(i)}
             onMouseLeave={hideIcons}
+            onClick={() => setIsOpen(true)}
           >
             <PhotoWrapper>
               <Photo src={photo.urls.raw} />
@@ -51,6 +67,7 @@ export default function FirstRow({ data }) {
           </PhotoLink>
         );
       })}
+      <PhotoDialog isOpen={isOpen} onDismiss={handleDismiss} />
     </GridFirstRow>
   );
 }
@@ -65,6 +82,7 @@ const GridFirstRow = styledComponents.div`
 
 const PhotoLink = styledComponents(Link)`
   position: relative;
+  cursor: zoom-in;
 `;
 
 const PhotoWrapper = styledComponents.figure`

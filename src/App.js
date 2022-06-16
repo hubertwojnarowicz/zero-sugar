@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import Photos from './pages/Photos';
 import Theme from './Theme';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import axios from 'axios';
+import PhotoDialog from './components/MainSection/PhotoDialog';
 
 function App() {
   const token = 'yvvzKFOYjSxZZ62D8uqs7P_skXPfre937dzUxBQINj0';
@@ -22,8 +22,9 @@ function App() {
             <GlobalStyles />
             <Router>
               <Routes>
-                <Route path={ROUTES.HOME} element={<Home />} />
-                <Route path={ROUTES.PHOTOS} element={<Photos />} />
+                <Route path={ROUTES.HOME} element={<Home />}>
+                  <Route path={ROUTES.PHOTOS} element={<PhotoDialog />} />
+                </Route>
               </Routes>
             </Router>
           </SkeletonTheme>

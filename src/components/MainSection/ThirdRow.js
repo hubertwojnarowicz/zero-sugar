@@ -49,6 +49,7 @@ const GridThirdRow = styledComponents.div`
 
 const PhotoLink = styledComponents(Link)`
   position: relative;
+  cursor: zoom-in;
 `;
 
 const PhotoWrapper = styledComponents.figure``;

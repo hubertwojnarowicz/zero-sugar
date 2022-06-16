@@ -8,6 +8,7 @@ export default function Logo() {
       <LogoContent>Zero</LogoContent>
       <LogoExtra>0</LogoExtra>
       <LogoContent>Sugar</LogoContent>
+      <title>Unsplash home</title>
     </LogoLink>
   );
 }

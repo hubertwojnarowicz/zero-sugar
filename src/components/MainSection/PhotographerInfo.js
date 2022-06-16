@@ -30,6 +30,7 @@ const PhotographerInfoWrapper = styledComponents.div`
     position: absolute;
     bottom: 15px;
     left: 15px;
+    display: flex;
     align-items: center;
     gap: 8px;
 `;
